@@ -1,0 +1,28 @@
+@ECHO OFF
+
+SET ADB=adb
+
+SET ADB_CMD=%ADB% wait-for-device
+ECHO ADB CMD=%ADB_CMD%
+%ADB_CMD%
+
+SET ADB_CMD=%ADB% root
+ECHO ADB CMD=%ADB_CMD%
+%ADB_CMD%
+
+SET ADB_CMD=%ADB% wait-for-device
+ECHO ADB CMD=%ADB_CMD%
+%ADB_CMD%
+
+SET ADB_CMD=%ADB% remount
+ECHO ADB CMD=%ADB_CMD%
+%ADB_CMD%
+
+SET ADB_CMD=%ADB% wait-for-device
+ECHO ADB CMD=%ADB_CMD%
+%ADB_CMD%
+
+SET ADB_CMD=%ADB% shell setenforce 0
+ECHO ADB CMD=%ADB_CMD%
+%ADB_CMD%
+

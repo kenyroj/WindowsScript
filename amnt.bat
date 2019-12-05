@@ -1,11 +1,42 @@
 @ECHO OFF
 
-ADB root
-ADB wait-for-device
-ADB remount
+SET ADB=adb
 
-SET RET=%ERRORLEVEL%
-ECHO %RET%
+SET ADB_CMD=%ADB% root
+ECHO ADB CMD=%ADB_CMD%
+%ADB_CMD%
+
+SET ADB_CMD=%ADB% wait-for-device
+ECHO ADB CMD=%ADB_CMD%
+%ADB_CMD%
+
+SET ADB_CMD=%ADB% disable-verity
+ECHO ADB CMD=%ADB_CMD%
+%ADB_CMD%
+
+SET ADB_CMD=%ADB% wait-for-device
+ECHO ADB CMD=%ADB_CMD%
+%ADB_CMD%
+
+SET ADB_CMD=%ADB% reboot
+ECHO ADB CMD=%ADB_CMD%
+%ADB_CMD%
+
+SET ADB_CMD=%ADB% wait-for-device
+ECHO ADB CMD=%ADB_CMD%
+%ADB_CMD%
+
+SET ADB_CMD=%ADB% root
+ECHO ADB CMD=%ADB_CMD%
+%ADB_CMD%
+
+SET ADB_CMD=%ADB% wait-for-device
+ECHO ADB CMD=%ADB_CMD%
+%ADB_CMD%
+
+SET ADB_CMD=%ADB% remount
+ECHO ADB CMD=%ADB_CMD%
+%ADB_CMD%
 
 :: Following no use since adb always return 0
 IF %RET% EQU 0 (

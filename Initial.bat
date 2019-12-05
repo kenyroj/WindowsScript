@@ -15,4 +15,6 @@ rem Doskey Alias
 @doskey ashll=adb shell
 @doskey acrsh=adb shell "echo c > /proc/sysrq-trigger"
 @doskey ameta=adb shell cat /firmware/verinfo/ver_info.txt
+@doskey fb_rbt=fastboot reboot
 
+SET PATH=%PATH%;D:\WindowsScript
