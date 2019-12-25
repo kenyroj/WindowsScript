@@ -41,6 +41,9 @@ NET USE M: \\%FILE_SERVER%\bsp_server /user:%USERNAME% %PASSWORD% /persistent:no
 NET USE N: /delete
 NET USE N: \\%FILE_SERVER%\%USERNAME% /user:%USERNAME% %PASSWORD% /persistent:no
 
+NET USE S: /delete
+NET USE S: \\%FILE_SERVER%\Share /user:%USERNAME% %PASSWORD% /persistent:no
+
 ::NET USE Z: /delete
 ::NET USE Z: "\\%LOCAL_VM%\KENyroj Home" /user:kenyroj 7410 /persistent:no
 

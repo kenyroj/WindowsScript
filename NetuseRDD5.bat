@@ -23,3 +23,7 @@ NET USE L: \\%FILE_SERVER%\Jenkins /user:%USERNAME% %PASSWORD% /persistent:no
 
 NET USE M: /delete
 NET USE M: \\%FILE_SERVER%\bsp_server /user:%USERNAME% %PASSWORD% /persistent:no
+
+NET USE S: /delete
+NET USE S: \\%FILE_SERVER%\Share /user:%USERNAME% %PASSWORD% /persistent:no
+
