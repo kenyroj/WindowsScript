@@ -3,6 +3,7 @@
 rem Doskey Alias
 @doskey ls=ls --color -F
 @doskey DevMgr=start devmgmt.msc
+@doskey SndCtl=control.exe mmsys.cpl
 @doskey np=D:\NonSetup\NotePad++\notepad++.exe $*
 @doskey ..=cd ..
 
