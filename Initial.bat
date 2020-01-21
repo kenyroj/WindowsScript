@@ -19,3 +19,12 @@ rem Doskey Alias
 @doskey fb_rbt=fastboot reboot
 
 SET PATH=%PATH%;D:\WindowsScript
+
+::PROMPT $E[m$E[32m$E]9;8;"USERNAME"$E\@$E]9;8;"COMPUTERNAME"$E\$S
+SET PROMPT_PATH=$E[1;36m$P$E[m
+if "%ConEmuIsAdmin%" == "ADMIN" (
+	SET PROMPT_TAIL=$E[1;31m#$E[m$S$E]9;12$E\
+) else (
+	SET PROMPT_TAIL=$E[1;33m$G$E[m$S$E]9;12$E\
+)
+PROMPT %PROMPT_PATH%%PROMPT_TAIL%
