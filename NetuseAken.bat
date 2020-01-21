@@ -1,7 +1,7 @@
 @SET DEV01_SERVER=MDT-APBC-RD5-DEV01.mic.com.tw
 @SET DEV02_SERVER=MDT-APBC-RD5-DEV02.mic.com.tw
 @SET DEV03_SERVER=MDT-APBC-RD5-DEV03.mic.com.tw
-@SET BUILD_SERVER=MDT-APBC-RD5-BUILD01.mic.com.tw
+@SET GERRIT_SERVER=MDT-GERRIT01.mic.com.tw
 @SET FILE_SERVER=MDT-APBC-RD5-FILE01.mic.com.tw
 @SET LOCAL_VM=192.168.56.102
 @SET USERNAME=aken.hsu
@@ -22,18 +22,18 @@ NET USE V: /delete
 NET USE V: \\%DEV03_SERVER%\%USERNAME% /user:%USERNAME% %PASSWORD% /persistent:no
 
 
-:: Setting for the Build server
-NET USE \\%BUILD_SERVER%\ /DELETE
+:: Setting for the Gerrit server
+NET USE \\%GERRIT_SERVER%\ /DELETE
+
+NET USE L: /delete
+NET USE L: \\%GERRIT_SERVER%\ReleaseImage /user:%USERNAME% %PASSWORD% /persistent:no
 
 NET USE O: /delete
-NET USE O: \\%BUILD_SERVER%\%USERNAME% /user:%USERNAME% %PASSWORD% /persistent:no
+NET USE O: \\%GERRIT_SERVER%\%USERNAME% /user:%USERNAME% %PASSWORD% /persistent:no
 
 
 :: Setting for the File server
 NET USE \\%FILE_SERVER%\ /DELETE
-
-NET USE L: /delete
-NET USE L: \\%FILE_SERVER%\Jenkins /user:%USERNAME% %PASSWORD% /persistent:no
 
 NET USE M: /delete
 NET USE M: \\%FILE_SERVER%\bsp_server /user:%USERNAME% %PASSWORD% /persistent:no
