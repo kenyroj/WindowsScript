@@ -3,7 +3,8 @@
 @SET DEV03_SERVER=MDT-APBC-RD5-DEV03.mic.com.tw
 @SET GERRIT_SERVER=MDT-GERRIT01.mic.com.tw
 @SET FILE_SERVER=MDT-APBC-RD5-FILE01.mic.com.tw
-@SET LOCAL_VM=192.168.56.102
+@SET TEST_SERVER=MDT-APBC-RD5-TEST01.mic.com.tw
+@SET LOCAL_VM=192.168.56.105
 @SET USERNAME=aken.hsu
 @SET PASSWORD=1q2w3e4r
 
@@ -13,13 +14,13 @@ NET USE \\%DEV02_SERVER%\ /DELETE
 NET USE \\%DEV03_SERVER%\ /DELETE
 
 NET USE K: /delete
-NET USE K: \\%DEV02_SERVER%\%USERNAME% /user:%USERNAME% %PASSWORD% /persistent:no
+NET USE K: \\%DEV03_SERVER%\%USERNAME% /user:%USERNAME% %PASSWORD% /persistent:no
 
 NET USE U: /delete
 NET USE U: \\%DEV01_SERVER%\%USERNAME% /user:%USERNAME% %PASSWORD% /persistent:no
 
 NET USE V: /delete
-NET USE V: \\%DEV03_SERVER%\%USERNAME% /user:%USERNAME% %PASSWORD% /persistent:no
+NET USE V: \\%DEV02_SERVER%\%USERNAME% /user:%USERNAME% %PASSWORD% /persistent:no
 
 
 :: Setting for the Gerrit server
@@ -44,7 +45,15 @@ NET USE N: \\%FILE_SERVER%\%USERNAME% /user:%USERNAME% %PASSWORD% /persistent:no
 NET USE S: /delete
 NET USE S: \\%FILE_SERVER%\Share /user:%USERNAME% %PASSWORD% /persistent:no
 
+
+:: Setting for the Test server
+NET USE \\%TEST_SERVER%\ /DELETE
+
+NET USE T: /delete
+NET USE T: \\%TEST_SERVER%\%USERNAME% /user:%USERNAME% %PASSWORD% /persistent:no
+
+
 ::NET USE Z: /delete
-::NET USE Z: "\\%LOCAL_VM%\KENyroj Home" /user:kenyroj 7410 /persistent:no
+::NET USE Z: "\\%LOCAL_VM%\KENyroj Home" /user:%USERNAME% %PASSWORD% /persistent:no
 
 PAUSE
