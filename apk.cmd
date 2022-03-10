@@ -1,5 +1,5 @@
 @echo off
-SET ADB=adb
+SET ADB=adb wait-for-device
 :: SET ADB=adb -s WUJ01NND75
 
 if '%1'=='' (
