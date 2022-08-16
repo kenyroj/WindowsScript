@@ -44,19 +44,23 @@ NET USE \\%GERRIT_SERVER%\ /DELETE
 ::NET USE P: \\%GERRIT_SERVER%\%USERNAME% /user:%USERNAME% %PASSWORD% /persistent:no
 
 NET USE Q: /delete
-NET USE Q: \\%GERRIT_SERVER%\ReleaseImage /user:%MDTNAME% %MDTPASSWD% /persistent:no
+NET USE Q: \\%GERRIT_SERVER%\ReleaseImage /user:%USERNAME% %USERNAME% /persistent:no
 
 NET USE R: /delete
 NET USE R: \\%GERRIT_SERVER%\%MDTNAME% /user:%MDTNAME% %MDTPASSWD% /persistent:no
 
+NET USE I: /delete
+NET USE I: \\%GERRIT_SERVER%\ReleaseImage /user:%MDTNAME% %MDTPASSWD% /persistent:no
+
+
 :: Setting for the File server
 NET USE \\%FILE_SERVER%\ /DELETE
-
+    
 NET USE M: /delete
 NET USE M: \\%FILE_SERVER%\bsp_server /user:%USERNAME% %PASSWORD% /persistent:no
 
-NET USE N: /delete
-NET USE N: \\%FILE_SERVER%\%USERNAME% /user:%USERNAME% %PASSWORD% /persistent:no
+NET USE P: /delete
+NET USE P: \\%FILE_SERVER%\%USERNAME% /user:%USERNAME% %PASSWORD% /persistent:no
 
 NET USE S: /delete
 NET USE S: \\%FILE_SERVER%\Share /user:%USERNAME% %PASSWORD% /persistent:no
@@ -67,6 +71,18 @@ NET USE \\%TEST_SERVER%\ /DELETE
 
 NET USE T: /delete
 NET USE T: \\%TEST_SERVER%\%MDTNAME% /user:%MDTNAME% %MDTPASSWD% /persistent:no
+
+
+NET USE V: /delete
+NET USE V: \\192.168.123.1\mdtuser /user:mdtuser Aa122333 /persistent:no
+NET USE W: /delete
+NET USE W: \\192.168.123.167\mdtadmin /user:mdtadmin 122333Aa /persistent:no
+NET USE X: /delete
+NET USE X: \\192.168.123.167\Public /user:mdtadmin 122333Aa /persistent:no
+REM NET USE X: \\192.168.123.167\Public /user:mdtguest aabbccc /persistent:no
+
+NET USE Y: /delete
+NET USE Y: \\10.99.254.68\dqe /persistent:no
 
 
 PAUSE
