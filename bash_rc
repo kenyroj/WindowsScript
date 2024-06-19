@@ -1,0 +1,92 @@
+# Functions
+ADB="adb wait-for-device"
+
+alog() {
+	$ADB root
+	SleepSec=10
+
+	echo "$ADB shell dmesg > /d/dmesg.log"
+	$ADB shell dmesg > /d/dmesg.log
+
+	echo "$ADB shell logcat -b all > /d/logcat.log"
+	$ADB shell "logcat -b all" > /d/logcat.log &
+	AdbPid=$!
+	echo Waiting for $SleepSec seconds for PID=$AdbPid
+	sleep $SleepSec
+	kill -9 $AdbPid
+}
+
+admsg() {
+	$ADB root
+	echo "$ADB shell dmesg > /d/dmesg.log"
+	$ADB shell dmesg > /d/dmesg.log 
+}
+
+aprop() {
+	$ADB shell "getprop | grep $1"
+}
+
+fb_b() {
+	$ADB reboot bootloader
+	fastboot flash boot_a boot.img
+	fastboot flash boot_b boot.img
+	fastboot flash dtbo_a dtbo.img
+	fastboot flash dtbo_b dtbo.img
+	
+	fastboot reboot
+}
+
+# Alias
+alias adev='adb devices'
+alias grec='grep --color=always $*'
+alias DevMgr='start devmgmt.msc'
+alias SndCtl='control.exe mmsys.cpl'
+alias np='/d/NonSetup/NotePad++/notepad++.exe $*'
+alias ..='cd .. ;'
+alias aks='adb kill-server'
+alias arbt='$ADB reboot'
+alias aldr='$ADB reboot bootloader'
+alias aedl='$ADB reboot edl'
+alias aroot='$ADB root'
+alias ashll='$ADB shell $*'
+alias aver='$ADB shell "getprop ro.build.display.id"'
+alias acrsh='$ADB shell "echo c > /proc/sysrq-trigger"'
+alias alpkg='$ADB shell "pm list packages $*"'
+alias adpkg='$ADB shell "dumpsys package $*"'
+
+alias lutl='$ADB shell "setprop vendor.logsave.util $*"'
+alias fb_dev='fastboot devices'
+alias fb_sn='fastboot oem flash_sn $*'
+alias fb_edl='fastboot erase xbl'
+alias fb_rbt='fastboot reboot'
+
+# Change the PS1
+PS1='\[\033]0;$TITLEPREFIX:$PWD\007\]' # set window title
+# PS1="$PS1"'\n'                   # new line
+PS1="$PS1"'\[\033[1;33m\]'       # change to Yellow
+# PS1="$PS1"'\W'                 # current working Path
+PS1="$PS1"'$PWD'                 # current working directory
+PS1="$PS1"'\[\033[0m\]'          # Reset color
+if test -z "$WINELOADERNOEXEC"
+then
+    GIT_EXEC_PATH="$(git --exec-path 2>/dev/null)"
+    COMPLETION_PATH="${GIT_EXEC_PATH%/libexec/git-core}"
+    COMPLETION_PATH="${COMPLETION_PATH%/lib/git-core}"
+    COMPLETION_PATH="$COMPLETION_PATH/share/git/completion"
+    if test -f "$COMPLETION_PATH/git-prompt.sh"
+    then
+        . "$COMPLETION_PATH/git-completion.bash"
+        . "$COMPLETION_PATH/git-prompt.sh"
+        PS1="$PS1"'\[\033[36m\]'  # change color to cyan
+        PS1="$PS1"'`__git_ps1`'   # bash function
+    fi
+fi
+PS1="$PS1"'\[\033[0m\]'        # Reset color
+PS1="$PS1"' ['
+PS1="$PS1"'\[\033[1;32m\]'       # change to Green
+PS1="$PS1"'\A'
+PS1="$PS1"'\[\033[0m\]'        # Reset color
+PS1="$PS1"]
+PS1="$PS1"' '                # prompt: always $
+
+# cd /d/
